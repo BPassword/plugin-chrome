@@ -1,0 +1,61 @@
+{
+  "name": "BPassword",
+  "description": "BPassword management your certificates",
+  "version": null,
+  "manifest_version": 2,
+  "icons": {
+    "48": "icons/icon_48.png",
+    "128": "icons/icon_128.png"
+  },
+  "browser_action": {
+    "default_title": "BPassword",
+    "default_popup": "popup/popup.html"
+  },
+  "background": {
+    "scripts": [
+      "share/js/lodash.min.js",
+      "share/js/buffer.min.js",
+      "share/js/aes.min.js",
+      "share/js/nacl.min.js",
+      "share/js/ed2curve.min.js",
+      "share/js/keythereum.min.js",
+      "share/js/data_storage.js",
+      "share/js/web3.min.js",
+      "commons.js",
+      "vendors_background.js",
+      "background.js"
+    ]
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+9",
+        "mac": "Command+Shift+9"
+      }
+    },
+    "lock": {
+      "description": "Lock the extension",
+      "name": "lock",
+      "suggested_key": {
+        "default": "Ctrl+Shift+L",
+        "mac": "Command+Shift+L"
+      }
+    }
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "chrome_style": true
+  },
+  "web_accessible_resources": [
+    "commons.js",
+    "contentscript.js",
+    "leech/*",
+    "inpage/*.js",
+    "vendors_inpage/*",
+    "p2/*",
+    "share/*",
+    "fonts/*",
+    "icons/*",
+    "images/*"
+  ]
+}

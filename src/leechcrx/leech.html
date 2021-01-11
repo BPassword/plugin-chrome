@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=APP_NAME%>-leech</title>
+    <!-- <link rel="stylesheet" href="../share/mdi/css/materialdesignicons.css" /> -->
+    <link rel="stylesheet" href="/ui-vuetify.css" />
+    <link rel="stylesheet" href="leech.css" />
+    <% if (NODE_ENV === 'development') { %> <% } %>
+  </head>
+
+  <body id="LeechBody">
+    <div id="Root"></div>
+
+    <script src="/commons.js"></script>
+    <script src="/ui-vues.js"></script>
+    <script src="/ui-vuetify.js"></script>
+    <script src="leech.js"></script>
+    <% if (NODE_ENV === 'development') { %> <% } %>
+  </body>
+</html>
