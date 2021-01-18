@@ -16,14 +16,14 @@
         </span>
       </div>
       <div class="drawer-footer-row">
-        <span class="ext-test-ver">测试版</span>
+        <span class="ext-test-ver">正式版</span>
       </div>
     </div>
   </v-footer>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 import IconLogoCircle from '@/ui/assets/icons/icon-logo-circle.png';
 
 export default {

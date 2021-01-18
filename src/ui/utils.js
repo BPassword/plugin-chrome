@@ -1,5 +1,5 @@
 export const EXTERNAL_PAGES = {
-  helpDuide: 'https://lanui.github.io/BPassword/#/zh_cn/user_guide',
+  helpDuide: 'https://bpassword.github.io/plug_help',
 };
 
 export const compressAddress = (address) => {
