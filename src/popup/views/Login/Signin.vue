@@ -21,6 +21,7 @@
             name="Password"
             counter
             @click:append="ctrl.pwdShow = !ctrl.pwdShow"
+            @keydown.stop="watchEnter"
             :error-messages="loginError"
             :placeholder="$t('l.passwordPlaceholder')"
             v-model="password"
@@ -81,6 +82,12 @@ export default {
       this.loading = false;
       this.loginError = '';
     },
+    watchEnter(ev) {
+      if (ev.keyCode === 13) {
+        ev.preventDefault();
+        this.loginHandle();
+      }
+    },
     loginHandle() {
       if (this.$refs.dataForm.validate()) {
         try {
@@ -115,6 +122,12 @@ export default {
     redirectIndex() {
       this.resetForm();
       this.$router.push({ path: '/index' });
+    },
+    watchKeydown(e) {
+      if (e.keyCode === 13) {
+        console.log('keydown>>>>', e);
+        alert(e.keyCode);
+      }
     },
   },
   watch: {

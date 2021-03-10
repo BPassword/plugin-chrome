@@ -120,8 +120,8 @@ class FieldController extends BaseController {
     }
 
     /** API_WIN_SELECTOR_UP_DRAWER */
-    let activedDomRect = target.getBoundingClientRect();
-    let serializeDomRect = JSON.parse(JSON.stringify(activedDomRect));
+    const activedDomRect = target.getBoundingClientRect();
+    const serializeDomRect = JSON.parse(JSON.stringify(activedDomRect));
 
     //
 
@@ -132,7 +132,15 @@ class FieldController extends BaseController {
     const drawMessageData = this.comboSelectorBoxSendData(ifrHeight, serializeDomRect);
     logger.debug('inputFieldValtChangedHandler>>>', elemType, tag, drawMessageData, paramState);
     if (elemType === 'drawing') {
-      this._sendMessageToTop(API_WIN_SELECTOR_UP_DRAWER, drawMessageData);
+      const backendState = this.backendStore.getState();
+      const { isUnlocked } = backendState;
+      if (!isUnlocked && valtState.activedField === 'password') {
+        this._sendMessageToTop(API_WIN_SELECTOR_ERASER, {
+          from: 'input:fields:changed:password:locked',
+        });
+      } else {
+        this._sendMessageToTop(API_WIN_SELECTOR_UP_DRAWER, drawMessageData);
+      }
     } else if (elemType === 'erase') {
       this._sendMessageToTop(API_WIN_SELECTOR_ERASER, { from: 'input:fields:changed' });
     }
@@ -233,7 +241,7 @@ class FieldController extends BaseController {
    * @param {*} entries
    */
   resizePisitonHandler(entries) {
-    let target = this.activedTarget || this.targetUsername || this.targetPassword;
+    const target = this.activedTarget || this.targetUsername || this.targetPassword;
     if (!target) {
       return;
     }
@@ -301,8 +309,8 @@ class FieldController extends BaseController {
 
     const { elemType, ifrHeight, tag } = ifrSizeState;
 
-    let activedDomRect = target.getBoundingClientRect();
-    let serializeDomRect = JSON.parse(JSON.stringify(activedDomRect));
+    const activedDomRect = target.getBoundingClientRect();
+    const serializeDomRect = JSON.parse(JSON.stringify(activedDomRect));
     const drawMessageData = this.comboSelectorBoxSendData(ifrHeight, serializeDomRect);
     logger.debug(
       'iconClickHandler::toggler>ifrSizeCalcWhenValtChanged>>>>>>>>>>>>>>>',
@@ -374,7 +382,7 @@ class FieldController extends BaseController {
      * height,ifrHeight: must
      * isInner,atHref optional
      */
-    let baseParam = {
+    const baseParam = {
       isInner: window.self !== window.top,
       atHref: window.location.href,
       hostname: this.getHost(),
@@ -396,7 +404,7 @@ class FieldController extends BaseController {
       return;
     }
 
-    let domRect = activedTarget.getBoundingClientRect();
+    const domRect = activedTarget.getBoundingClientRect();
 
     const transportMsg = {
       posterId: this.getId(),
@@ -504,7 +512,7 @@ function BindingFocusEvents() {
 
       const { elemType, ifrHeight, tag } = sizeState;
       logger.debug('FieldController::checkloginForm@focusin>>sizeState>>', tag, sizeState);
-      let serializeDomRect = JSON.parse(JSON.stringify(activedDomRect));
+      const serializeDomRect = JSON.parse(JSON.stringify(activedDomRect));
 
       if (elemType === 'drawing') {
         const drawMessageData = ctx.comboSelectorBoxSendData(ifrHeight, serializeDomRect);
@@ -534,7 +542,7 @@ function BindingFocusEvents() {
 
 function drawBPassButtonRoot(evt) {
   const _ctx = this;
-  let domRect = evt.target.getBoundingClientRect();
+  const domRect = evt.target.getBoundingClientRect();
   const serializeRect = JSON.stringify(domRect);
 
   let passRoot = document.querySelector(BPASS_BUTTON_TAG);
@@ -556,7 +564,7 @@ function _updateBpassButtonPoistion(target) {
   const bpassButton = document.querySelector(BPASS_BUTTON_TAG);
   logger.debug('activedPositionResizeObserve>>_updateBpassButtonPoistion>>>>>', bpassButton);
   if (target && bpassButton) {
-    let domRect = JSON.parse(JSON.stringify(target.getBoundingClientRect()));
+    const domRect = JSON.parse(JSON.stringify(target.getBoundingClientRect()));
     setDomRect(bpassButton, domRect);
   }
 }
