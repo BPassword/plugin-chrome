@@ -27,6 +27,13 @@ const makeDestZipDirIfNotExists = () => {
   }
 };
 
+const removeStatsJson = () => {
+  const statsFile = R(DEST_DIR, 'stats.json');
+  fs.existsSync(statsFile) &&
+    fs.removeSync(statsFile) &&
+    console.log(chalk.redBright(`remove unused ${statsFile}.`));
+};
+
 const buildZip = (src, dest, zipFilename) => {
   console.info(`Building ${zipFilename}...`);
 
@@ -51,7 +58,7 @@ const main = () => {
   const zipFilename = `${name}-v${version}`;
   // copySecretFiles(name, version);
   makeDestZipDirIfNotExists();
-
+  removeStatsJson();
   buildZip(DEST_DIR, DEST_ZIP_DIR, zipFilename)
     .then(() => console.info('OK'))
     .catch(console.err);

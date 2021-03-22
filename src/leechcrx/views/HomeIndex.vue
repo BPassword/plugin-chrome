@@ -42,9 +42,12 @@
           </div>
           <div class="selector-item" v-if="item && Boolean(item.ctype)">
             <div class="item-line item-title">
-              <v-btn small text color="primary" class="px-0" @click="updateItemHandle(item)"
-                >更新此密码</v-btn
-              >
+              <v-btn small text color="primary" class="px-0" @click="updateItemHandle(item)">
+                更新此密码
+              </v-btn>
+              <v-btn small text color="primary" class="px-0" @click="closeLeechHandle(item)">
+                不更新
+              </v-btn>
             </div>
           </div>
         </v-btn>
@@ -61,6 +64,7 @@ import {
   API_WIN_SELECTOR_UP_HEIGHT,
   API_RT_EDIT_WEB_ITEM,
   API_WIN_SELECTOR_ERASER,
+  API_WIN_SELECTOR_ERASER_FORCE,
 } from '@/libs/msgapi/api-types';
 import { IFR_CONF } from '@/libs/controllers/size-calculator';
 import WhispererController from '@/libs/messages/whisperer-controller';
@@ -85,7 +89,7 @@ export default {
       whisperer
         .sendSimpleMessage(API_RT_FILL_FEILDS, item)
         .then(async (response) => {
-          //send earse
+          // send earse
           window.top.postMessage(
             { apiType: API_WIN_SELECTOR_ERASER, data: { form: 'leech filled success.' } },
             '*'
@@ -120,6 +124,16 @@ export default {
           await this.$store.dispatch('updatePassItems', items);
         })
         .catch((err) => {});
+    },
+    closeLeechHandle(item) {
+      const message = {
+        apiType: API_WIN_SELECTOR_ERASER_FORCE,
+        data: {
+          isInner: window.top !== window.self,
+        },
+      };
+
+      window.top.postMessage(message, '*');
     },
   },
   mounted() {},
