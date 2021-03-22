@@ -247,12 +247,12 @@ class FieldController extends BaseController {
     }
     logger.debug('activedPositionResizeObserve>>>>>>>>>after>>>>>>>>>>>>>>>>>>>>>>>>>>>', target);
 
-    //update icon position
+    // update icon position
     _updateBpassButtonPoistion.call(this, target);
     this.sendTargetPosition(target);
   }
 
-  /**received top actived posi chain commands */
+  /** received top actived posi chain commands */
   enabledSelfPrivateMsgListener() {
     const selfId = this.getId();
     window.addEventListener('message', (evt) => {
@@ -465,10 +465,10 @@ class FieldController extends BaseController {
       this.emit('enabled:resize:obs');
       this.emit('actived:login:window:scroll-obs');
       if (window.self !== window.top) {
-        //enabled listening message from top
+        // enabled listening message from top
         this.emit('enabled:private:msg-listener');
       }
-      //actived zombie
+      // actived zombie
       this.emit('actived:zombie-communication');
     }
   }
@@ -493,7 +493,7 @@ function BindingFocusEvents() {
 
       ctx.setActivedTarget(e.target);
 
-      //send actived posi chains
+      // send actived posi chains
       ctx.sendTargetPosition(e.target);
 
       const activedDomRect = e.target.getBoundingClientRect();
@@ -506,6 +506,8 @@ function BindingFocusEvents() {
       // send to backend
       drawBPassButtonRoot.call(ctx, e);
 
+      // const bkState = ctx.backendStore.getState();
+      // logger.debug('BK-ender>>', activedValtState, bkState);
       // calc send draw selector box sizeState
       const _complexParams = ctx.comboSizeCalcParams(e.target);
       const sizeState = ifrSizeCalcWhenValtChanged(_complexParams);
@@ -515,21 +517,22 @@ function BindingFocusEvents() {
       const serializeDomRect = JSON.parse(JSON.stringify(activedDomRect));
 
       if (elemType === 'drawing') {
+        // TODO
         const drawMessageData = ctx.comboSelectorBoxSendData(ifrHeight, serializeDomRect);
         ctx._sendMessageToTop(API_WIN_SELECTOR_DRAWER, drawMessageData);
       } else if (elemType === 'erase') {
         ctx.sendEraseSelectorBoxMessage(false, 'focusin');
       } else {
-        /**do nothing */
+        /** do nothing */
       }
     });
     elem.addEventListener('focusout', (e) => {
       if (ctx.enabledFocusoutErase) {
-        //remove icon when focusout
+        // remove icon when focusout
         document.querySelector(BPASS_BUTTON_TAG) &&
           document.querySelector(BPASS_BUTTON_TAG).remove();
 
-        //TODO open commonent for debug
+        // TODO open commonent for debug
         ctx.sendEraseSelectorBoxMessage(false, 'focusout');
       }
 
@@ -591,7 +594,7 @@ function lookupLoginFeildsInDom() {
   if (!_password) {
     return ret;
   } else {
-    //Fixed 163.com has two password input fields
+    // Fixed 163.com has two password input fields
     if (_password.style.display === 'none') {
       // logger.debug('163.com >>>>', _password.style.display);
       window.document.querySelectorAll(PASSWORD_SELECTOR).forEach((el) => {
@@ -605,14 +608,14 @@ function lookupLoginFeildsInDom() {
   let _username = null;
 
   if (_password.form) {
-    //Fixed 163.com has two password
+    // Fixed 163.com has two password
     _username =
       _password.form.querySelector(USERNAME_SELECTOR) &&
       _password.form.querySelector(USERNAME_SELECTOR).style.display !== 'none'
         ? _password.form.querySelector(USERNAME_SELECTOR)
         : null;
 
-    //fixed pan|yun.baidu.com
+    // fixed pan|yun.baidu.com
     _username =
       _username &&
       _username.getBoundingClientRect() &&
@@ -655,7 +658,7 @@ function recursiveQuery(target, selector) {
 
   let findElem = null;
 
-  //fixed baidu&sina&163 has two feild and first display:none
+  // fixed baidu&sina&163 has two feild and first display:none
   parentElem.querySelectorAll(selector).forEach((el) => {
     // fixed sina has multi input
     // find parent>first> display
@@ -664,7 +667,7 @@ function recursiveQuery(target, selector) {
       // logger.debug('find TargetUsername&&&&>>>>>>>>>>>>>>>>>', findElem);
     }
 
-    //fixed Baidu dynamic
+    // fixed Baidu dynamic
     if (
       findElem &&
       findElem.getBoundingClientRect() &&

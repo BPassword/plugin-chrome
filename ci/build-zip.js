@@ -5,6 +5,7 @@ const fs = require('fs-extra');
 const { R, dist, distzip } = require('./paths');
 
 const archiver = require('archiver');
+const chalk = require('chalk');
 
 const DEST_DIR = dist;
 const DEST_ZIP_DIR = distzip;
@@ -62,3 +63,13 @@ function copySecretFiles(name, version) {
 }
 
 main();
+
+function appendChangedLog(target, data) {
+  if (!target) {
+    console.log(chalk.redBright('miss target file'));
+  }
+  if (typeof data !== 'object' || !data.version) {
+    console.log('Params miss, un logging write.');
+    return;
+  }
+}

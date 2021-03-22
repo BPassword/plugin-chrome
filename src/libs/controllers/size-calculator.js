@@ -71,9 +71,9 @@ function unlockedSizeState(options = {}) {
     password = '',
   } = options;
 
-  let hostMatchesNum = items.length,
-    sizeItems = items,
-    rows = items.length;
+  const hostMatchesNum = items.length;
+  let sizeItems = items;
+  let rows = items.length;
 
   const sizeState = {
     isUnlocked,
@@ -178,7 +178,7 @@ function unlockedSizeState(options = {}) {
     }
 
     if (hostMatchesNum === 0 && username && password) {
-      //add tips
+      // add tips
       rows = 1;
       const item = {
         hostname,
@@ -226,9 +226,9 @@ function unlockedSizeStateWithValtChanged(options = {}) {
     password = '',
   } = options;
 
-  let sizeItems = items,
-    hostMatchesNum = items.length,
-    rows = items.length;
+  let sizeItems = items;
+  const hostMatchesNum = items.length;
+  let rows = items.length;
 
   const sizeState = {
     isUnlocked,
@@ -434,7 +434,7 @@ function lockedSizeState(options = {}) {
       rows: hostMatchesNum,
       items: items,
       ifrHeight: IFR_CONF.lockedHeight,
-      elemType: 'drawing',
+      elemType: 'erase', // drawing
       tag: 'locked state,matches or need add tips.',
     };
   } else {
@@ -455,11 +455,11 @@ function lockedSizeState(options = {}) {
  * @param {*} rows
  */
 function calcRowHeight(rows) {
-  if (rows == 0) return IFR_CONF.addBtnHeight;
-  let _showRows = rows > IFR_CONF.maxRows ? IFR_CONF.maxRows : rows;
+  if (rows === 0) return IFR_CONF.addBtnHeight;
+  const _showRows = rows > IFR_CONF.maxRows ? IFR_CONF.maxRows : rows;
 
   const diff = rows === 1 ? 2 : 0;
-  let ifrHeight = IFR_CONF.baseHeight + _showRows * IFR_CONF.rowHeight + diff;
+  const ifrHeight = IFR_CONF.baseHeight + _showRows * IFR_CONF.rowHeight + diff;
 
   return ifrHeight;
 }
