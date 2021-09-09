@@ -22,7 +22,7 @@ const LEECH_ADDOR_PATH = 'leech/leech.html#/add_passbook';
 
 if (shouldActivedJet()) {
   /** generate jetid will report Backend */
-  let jetid = `bp_${nanoid()}`;
+  const jetid = `bp_${nanoid()}`;
 
   startupInject(jetid);
 }
@@ -42,7 +42,7 @@ function chanel5builder(jetid) {
   const serializeConfig = getExtInfo(jetid);
 
   /* use strict */
-  let jetOne = `
+  const jetOne = `
     /**BPassword inject ${jetid} */\n
     !(function(jetid,serializeConfig,logLevel){
       const BP_CONFIG = JSON.parse(serializeConfig);
@@ -303,7 +303,7 @@ function injectSourceIntoDom(content, tag) {
 
     scriptEl.onload = function () {
       if (LOG_LEVEL !== 'DEBUG') {
-        //this.parentNode.removeChild(this);
+        // this.parentNode.removeChild(this);
       }
     };
 

@@ -115,10 +115,10 @@ class TopController extends BaseController {
     this.loginHref = href;
     this.isInner = isInner;
 
-    //startup communication
+    // startup communication
     this.emit('actived:zombie-communication', hostname);
 
-    //actived:resize:obs
+    // actived:resize:obs
     if (isInner && senderId) {
       this.loginSource = evt.source;
       this.loginOrigin = evt.origin;
@@ -163,6 +163,7 @@ class TopController extends BaseController {
   updateSelectorBoxIfrHeight({ ifrHeight, isAddor = false }) {
     _updateSelectorBoxIfrHeight.call(this, { ifrHeight, isAddor });
   }
+
   /** +++++++++++++++++++++++ Internal State Methods +++++++++++++++++++++++++ */
   updateBackendStoreHandler(state) {
     if (typeof state === 'object') {
@@ -171,7 +172,7 @@ class TopController extends BaseController {
   }
 
   getLeechSrc() {
-    let src = this.initConfig ? this.initConfig.leechSrc : '';
+    const src = this.initConfig ? this.initConfig.leechSrc : '';
     !src && logger.warn('TopController unset leechSrc property.');
     return src;
   }
@@ -232,7 +233,7 @@ function _updateSelectorBoxIfrHeight({ ifrHeight, isAddor = false }) {
   if (!ifrHeight) {
     return;
   }
-  let box = document.querySelector(SELECTOR_BOX_TAG);
+  const box = document.querySelector(SELECTOR_BOX_TAG);
   if (box) {
     box.setAttribute('ifr-height', parseInt(ifrHeight));
     if (isAddor) {

@@ -519,6 +519,7 @@ function BindingFocusEvents() {
       if (elemType === 'drawing') {
         // TODO
         const drawMessageData = ctx.comboSelectorBoxSendData(ifrHeight, serializeDomRect);
+        logger.debug('FieldController::checkloginForm@focusin>>>', drawMessageData);
         ctx._sendMessageToTop(API_WIN_SELECTOR_DRAWER, drawMessageData);
       } else if (elemType === 'erase') {
         ctx.sendEraseSelectorBoxMessage(false, 'focusin');
