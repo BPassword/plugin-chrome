@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 import { debounce } from 'lodash';
 import EventEmitter from 'events';
 import ObservableStore from 'obs-store';
@@ -46,7 +47,7 @@ const DEFAULT_PROVIDER = {
   color: 'rgba(111, 160, 239,.9)',
 };
 
-const DEF_ENABLED_CUSTOMIZE = LOG_LEVEL === 'DEBUG' ? true : false;
+const DEF_ENABLED_CUSTOMIZE = LOG_LEVEL === 'DEBUG';
 
 class NetworkController extends EventEmitter {
   constructor(opts = {}) {

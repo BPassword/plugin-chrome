@@ -9,7 +9,7 @@
  *		@created:  2020-12-28
  *		@comments:
  **********************************************************************/
-export const MEMBER_COSTWEI_PER_YEAR = '60000000000000000000'; //Ropsten default
+export const MEMBER_COSTWEI_PER_YEAR = '60000000000000000000'; // Ropsten default
 export const RECHARGE_YEAR_TYPE = 1; // 按年充值
 export const DEFAULT_GAS_LIMIT = 210000;
 export const MIN_GAS_LIMIT = 21000;

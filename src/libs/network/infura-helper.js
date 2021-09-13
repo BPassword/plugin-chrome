@@ -1,4 +1,4 @@
-import { MAINNET, ROPSTEN } from './enums';
+import { MAINNET, ROPSTEN, BSC_TESTNET_NAME } from './enums';
 import { infuraId } from '@lib/code-settings';
 
 /*********************************************************************
@@ -14,7 +14,9 @@ import { infuraId } from '@lib/code-settings';
  *    @comments:
  **********************************************************************/
 
-//https://mainnet.infura.io/v3/YOUR-PROJECT-ID
+const BSC_TESTNET_RPCURL = 'https://data-seed-prebsc-1-s1.binance.org:8545/';
+
+// https://mainnet.infura.io/v3/YOUR-PROJECT-ID
 const INFURA_DOMAIN = 'infura.io';
 const INFURA_VERSION = 'v3';
 
@@ -41,6 +43,11 @@ export function buildRpcUrl({ network, projectId }) {
 export function buildTSLRpcURL({ network, projectId, secretKey }) {
   if (secretKey && !projectId) throw new Error('infura custom set secretKey but miss project id.');
   const nw = validNetwork(network);
+
+  if (network === BSC_TESTNET_NAME) {
+    return BSC_TESTNET_RPCURL;
+  }
+
   !secretKey && (projectId = projectId || infuraId);
   return secretKey
     ? `https://${secretKey}@${nw}.${INFURA_DOMAIN}/${INFURA_VERSION}/${projectId}`
@@ -61,6 +68,8 @@ function validNetwork(network) {
       return MAINNET;
     case ROPSTEN:
       return ROPSTEN;
+    case BSC_TESTNET_NAME:
+      return BSC_TESTNET_NAME;
     default:
       throw Error('Unspport network:' + network);
   }

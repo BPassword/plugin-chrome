@@ -1,6 +1,6 @@
 {
   "name": "bpassword-crx",
-  "version": "2.1.11",
+  "version": "2.2.0",
   "description": "BPassword management your certificates",
   "author": "lanbery",
   "license": "SEE LICENSE IN LICENSE",
@@ -18,7 +18,8 @@
     "init:dev": "node ci/init-development-env.js",
     "build:crx": "cross-env EXT_TARGET=chrome webpack --config ci/webpack.config.js --hide-modules",
     "build:pre": "cross-env NODE_ENV=development HMR=true LOG_LEVEL=WARN npm run build:crx",
-    "watch:dev": "cross-env NODE_ENV=development HMR=true npm run build:crx -- --watch"
+    "watch:dev": "cross-env NODE_ENV=development HMR=true npm run build:crx -- --watch",
+    "docs": "docsify serve docs -p 5775 -o"
   },
   "husky": {
     "hooks": {

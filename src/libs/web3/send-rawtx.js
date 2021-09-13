@@ -7,7 +7,7 @@ import { PARAMS_ILLEGAL } from '../biz-error/error-codes';
 import logger from '../logger';
 
 import { DEFAULT_GAS_LIMIT } from './cnst';
-import { findNetworkByChainId, SUPPORT_HARDFORKS } from '../network/enums';
+import { findNetworkByChainId, SUPPORT_HARDFORKS, BSCTEST_NETWORK_ID } from '../network/enums';
 import { chain } from 'lodash';
 
 /*********************************************************************
@@ -32,7 +32,7 @@ import { chain } from 'lodash';
  */
 export const signedDataTransaction = async (txParams, signOpts) => {
   const { dev3, chain } = signOpts;
-  let txData = validTxParams(txParams);
+  const txData = validTxParams(txParams);
   logger.debug('Translate txParams => txData', txData);
 
   const common = new Common({ chain: chain });
@@ -65,14 +65,35 @@ export const signedRawTxData4Method = async (web3js, dev3, txParams, data, opts)
     chainId = await web3js.eth.getChainId();
   }
 
-  let txData = validTxParams(txParams);
+  logger.debug('Common>>>>s>', opts);
+  const txData = validTxParams(txParams);
   const nonce = await web3js.eth.getTransactionCount(selectedAddress);
   txData.nonce = nonce;
   txData.data = data;
 
   let common;
-  if (!findNetworkByChainId(chainId)) {
-    const networkId = await web3js.eth.net.getId();
+  logger.debug('Common>>>chainId>s>', chainId);
+
+  const networkId = await web3js.eth.net.getId();
+  if (findNetworkByChainId(chainId)) {
+    switch (parseInt(chainId)) {
+      case parseInt(BSCTEST_NETWORK_ID):
+        common = Common.forCustomChain(
+          'mainnet',
+          {
+            name: 'bnb',
+            chainId: chainId,
+            networkId,
+          },
+          'petersburg'
+        );
+        break;
+
+      default:
+        common = new Common({ chain: chainId });
+        break;
+    }
+  } else {
     common = Common.forCustomChain(
       'mainnet',
       {
@@ -82,9 +103,34 @@ export const signedRawTxData4Method = async (web3js, dev3, txParams, data, opts)
       },
       'petersburg'
     );
-  } else {
-    common = new Common({ chain: chainId });
   }
+
+  // if (!findNetworkByChainId(chainId)) {
+  //   const networkId = await web3js.eth.net.getId();
+  //   if (parseInt(chainId) === parseInt(BSCTEST_NETWORK_ID)) {
+  //     common = Common.forCustomChain(
+  //       'mainnet',
+  //       {
+  //         name: 'bnb',
+  //         chainId: chainId,
+  //         networkId,
+  //       },
+  //       'petersburg'
+  //     );
+  //   } else {
+  //     common = Common.forCustomChain(
+  //       'mainnet',
+  //       {
+  //         name: chain,
+  //         chainId: chainId,
+  //         networkId,
+  //       },
+  //       'petersburg'
+  //     );
+  //   }
+  // } else {
+  //   common = new Common({ chain: chainId });
+  // }
 
   logger.debug('Common>>>>>', common);
 

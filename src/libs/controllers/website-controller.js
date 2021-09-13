@@ -30,8 +30,8 @@ import { fetchEventLogsFromChain } from '../web3/apis/web-storage-event-api';
  *		@comments:
  **********************************************************************/
 const StateStruct = {
-  blockerVersion: [], //{blockNumber,Cypher64,contactAddress,Hash,mainAddress,chainId}
-  lastSyncHash: null, //save this client last sync block success hash
+  blockerVersion: [], // {blockNumber,Cypher64,contactAddress,Hash,mainAddress,chainId}
+  lastSyncHash: null, // save this client last sync block success hash
 };
 
 class WebsiteController extends EventEmitter {
@@ -158,7 +158,7 @@ class WebsiteController extends EventEmitter {
   }
 
   async unlock(SubPriKey) {
-    let { chainId } = this.getCurrentProvider() || {};
+    const { chainId } = this.getCurrentProvider() || {};
 
     if (!chainId || !SubPriKey) {
       throw new BizError('lost chainId or subprikey', INTERNAL_ERROR);
@@ -180,10 +180,10 @@ class WebsiteController extends EventEmitter {
       if (Plain.unwrap) {
         Plain = Plain.unwrap();
       }
-      //update memStore
+      // update memStore
       this.memStore.updateState({ Plain, items, SubPriKey });
 
-      //notify all
+      // notify all
       this.emit('notify:activedTab:communications');
     } catch (error) {
       logger.warn('Decrypted Website Cypher64 to Plain failed.', error);
@@ -210,7 +210,7 @@ class WebsiteController extends EventEmitter {
       this.reloadMemStore(Plain, Cypher64);
       // this.emit('notify:injet:client', hostname);
 
-      //notify all
+      // notify all
       this.emit('notify:activedTab:communications');
       return await this.getState();
     } catch (error) {
@@ -234,7 +234,7 @@ class WebsiteController extends EventEmitter {
       this.updateLocalChainCypher64(Cypher64);
       await this.reloadMemStore(Plain, Cypher64);
 
-      //notify all
+      // notify all
       this.emit('notify:activedTab:communications');
 
       return await this.getState();
@@ -260,7 +260,7 @@ class WebsiteController extends EventEmitter {
       await this.reloadMemStore(Plain, Cypher64);
       // this.emit('notify:injet:client', hostname);
 
-      //notify all
+      // notify all
       this.emit('notify:activedTab:communications');
 
       return await this.getState();
@@ -337,7 +337,7 @@ class WebsiteController extends EventEmitter {
       items = [];
     }
 
-    //make password safety don't send to page dom ,it only in leech can get password
+    // make password safety don't send to page dom ,it only in leech can get password
     const newItems = deepthCopyItems(items).map((it) => {
       // it.password = 'bp-hidden';
       return it;
@@ -386,12 +386,14 @@ class WebsiteController extends EventEmitter {
 
     return this.getState();
   }
+
   /* <----------------------- Block Chain methods ----------------------> */
   getFromBlockNumber() {
     const memState = this.memStore.getState() || {};
     const { Plain = {} } = memState;
     return Plain.BlockNumber || 0;
   }
+
   async fetchMergeFromBlockChain(fromBlock) {
     const { selectedAddress, dev3 } = this.getCurrentWalletState();
     fromBlock = !fromBlock ? this.getFromBlockNumber() : fromBlock;
@@ -430,7 +432,7 @@ export default WebsiteController;
  * @param {string} Cypher64
  */
 function _initChainState(chainId, Cypher64) {
-  let upChainState = {
+  const upChainState = {
     [chainId]: Cypher64,
   };
   this.chainStore.updateState(upChainState);
@@ -447,8 +449,9 @@ async function _GetFromChainLogs(selectedAddress, fromBlock = 0) {
     throw new BizError('Params illegal', INTERNAL_ERROR);
   }
 
-  logger.debug('Website _GetFromChainLogs>>>>>>>>>>>>', fromBlock);
+  logger.debug('Website GetFromChainLogs>>>>>>>>>>>>', fromBlock);
   const web3js = getWeb3Inst(rpcUrl);
   const respLogs = await fetchEventLogsFromChain(web3js, chainId, selectedAddress, fromBlock);
+  logger.debug('Website GetFromChainLogs>>>respLogs>>>>>>>>>', respLogs);
   return respLogs;
 }

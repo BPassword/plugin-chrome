@@ -25,27 +25,27 @@ const smarts = {
   3: [
     {
       contractName: 'BT',
-      address: '0x4458F6813Cd8d7dc56A7c5729Bd5B0b2F7b7720d',
+      address: '0x61b10e58396D03C303dE54dBc8B3c8eef7f3b2d5',
     },
     {
       contractName: 'Admin',
-      address: '0x734B9833b0B57e249C1DD338aEaD86a45674d9d1',
+      address: '0x4f6fa3aab92155fcb731e7af8f45ec202e20b097',
     },
     {
       contractName: 'bptMember',
-      address: '0x734B9833b0B57e249C1DD338aEaD86a45674d9d1',
+      address: '0xF012469c45941dF41ddd9b2233d6eDd306244D88',
     },
     {
       contractName: 'bptStorage',
-      address: '0xb9e0eee9e78945aad5a58aa4d48d1606c795ae77',
+      address: '0xF012469c45941dF41ddd9b2233d6eDd306244D88',
     },
     {
       contractName: 'bptStorageByEvent',
-      address: '0xB574E1611dBC27Ae4123cCfa1C1954AA86F4676E',
+      address: '0xaecE56330409dC3a2597a69D1b3573CF0a69e74f',
     },
     {
       contractName: 'bptStorageByEventSite',
-      address: '0x9b9688211D4f74D706a6250F89d1214846Da0291',
+      address: '0xb383Ac83940B1527F86ACB5d6458baEcD59eFf45',
     },
   ],
   1: [
@@ -72,6 +72,32 @@ const smarts = {
     {
       contractName: 'bptStorageByEventSite',
       address: '0xA3CFebAB3c2fCdAC18b2921Cb6E1c248DA53B438',
+    },
+  ],
+  97: [
+    {
+      contractName: 'BT',
+      address: '0x43f07Fb1B26B0b891055f8d68509E17E8581B92c',
+    },
+    {
+      contractName: 'Admin',
+      address: '0xFd30d2c32E6A22c2f026225f1cEeA72bFD9De865',
+    },
+    {
+      contractName: 'bptMember',
+      address: '0xDEeF52e1c6Da66Fd2E78FFC03fBD86bfB6b4bE76',
+    },
+    {
+      contractName: 'bptStorage',
+      address: '0xDEeF52e1c6Da66Fd2E78FFC03fBD86bfB6b4bE76',
+    },
+    {
+      contractName: 'bptStorageByEvent',
+      address: '0xb1305e836CA0DF69c66a025cF86dFDF64714A0D1',
+    },
+    {
+      contractName: 'bptStorageByEventSite',
+      address: '0x789B6786a86a342F17bdAf42E004bb8C9704d632',
     },
   ],
 };

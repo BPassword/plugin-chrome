@@ -6,24 +6,28 @@ export const GOERLI = 'goerli';
 export const LOCALHOST = 'localhost';
 export const CUSTOM_DEFAULT = 'private';
 export const MAINNET_NAME = 'main';
+export const BSC_TESTNET_NAME = 'bsctestnet';
 
 export const MAINNET_NETWORK_ID = '1';
 export const ROPSTEN_NETWORK_ID = '3';
 export const RINKEBY_NETWORK_ID = '4';
 export const GOERLI_NETWORK_ID = '5';
 export const KOVAN_NETWORK_ID = '42';
+export const BSCTEST_NETWORK_ID = '97';
 
 export const MAINNET_CHAIN_ID = '0x1';
 export const ROPSTEN_CHAIN_ID = '0x3';
 export const RINKEBY_CHAIN_ID = '0x4';
 export const GOERLI_CHAIN_ID = '0x5';
 export const KOVAN_CHAIN_ID = '0x2a';
+export const BSCTEST_CHAIN_ID = '0x61';
 
 export const ROPSTEN_DISPLAY_NAME = 'Ropsten';
 export const RINKEBY_DISPLAY_NAME = 'Rinkeby';
 export const KOVAN_DISPLAY_NAME = 'Kovan';
 export const MAINNET_DISPLAY_NAME = 'Main Ethereum Network';
 export const GOERLI_DISPLAY_NAME = 'Goerli';
+export const BSCTEST_DISPLAY_NAME = 'BSC Testnet';
 
 export const INFURA_PROVIDER_TYPES = [ROPSTEN_DISPLAY_NAME, MAINNET_DISPLAY_NAME];
 
@@ -44,6 +48,14 @@ export const NETWORK_TYPE_NAME_KV = {
     chainId: ROPSTEN_CHAIN_ID,
     nickname: ROPSTEN_DISPLAY_NAME,
     color: 'rgba(233, 21, 80, 0.7)',
+  },
+  [BSCTEST_DISPLAY_NAME]: {
+    type: BSC_TESTNET_NAME,
+    name: BSC_TESTNET_NAME,
+    networkId: BSCTEST_NETWORK_ID,
+    chainId: BSCTEST_CHAIN_ID,
+    nickname: BSCTEST_DISPLAY_NAME,
+    color: 'rgba(0,139,139, 0.7)',
   },
 };
 
