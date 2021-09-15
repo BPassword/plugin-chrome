@@ -36,15 +36,16 @@ export const getWebStorageEventContractAddress = (chainId) => {
 export const fetchEventLogsFromChain = async (web3js, chainId, selectedAddress, fromBlock) => {
   const inst = getWebStorageEventInst(web3js, chainId, selectedAddress);
 
+  global.stInst = inst;
   const ret = {
     chainId,
     logs: [],
   };
-
+  logger.debug('Website getPastEvents>>>>>>>>>>>>', fromBlock, selectedAddress);
   // https://github.com/binance-chain/bsc/issues/113
   // So BSC unsupport
   const eventLogs = await inst.getPastEvents('Commit', {
-    fromBlock: fromBlock || 0,
+    // fromBlock: fromBlock || 0,
     toBlock: 'latest',
     filter: { sender: [selectedAddress] },
   });
@@ -54,13 +55,10 @@ export const fetchEventLogsFromChain = async (web3js, chainId, selectedAddress, 
 
     ret.blockNumber = lastEvent.blockNumber;
     ret.lastTxHash = lastEvent.transactionHash;
-
-    logger.debug('fetchEventLogsFromChain>>>>>>>>>>>>>>', fromBlock, eventLogs);
-
     const logs = eventLogs.map((el) => web3js.utils.hexToBytes(el.returnValues[1]));
     ret.logs = logs;
     ret.evtLogs = eventLogs;
   }
-
+  logger.debug('fetchEventLogsFromChain>>>>>>>>>>>>>>', fromBlock, eventLogs);
   return ret;
 };

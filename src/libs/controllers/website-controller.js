@@ -449,7 +449,7 @@ async function _GetFromChainLogs(selectedAddress, fromBlock = 0) {
     throw new BizError('Params illegal', INTERNAL_ERROR);
   }
 
-  logger.debug('Website GetFromChainLogs>>>>>>>>>>>>', fromBlock);
+  // logger.debug('Website GetFromChainLogs>>>>>>>>>>>>', fromBlock);
   const web3js = getWeb3Inst(rpcUrl);
   const respLogs = await fetchEventLogsFromChain(web3js, chainId, selectedAddress, fromBlock);
   logger.debug('Website GetFromChainLogs>>>respLogs>>>>>>>>>', respLogs);

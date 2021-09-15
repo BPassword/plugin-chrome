@@ -32,19 +32,20 @@ export const fetchEventLogsFromChain = async (web3js, chainId, selectedAddress, 
   const inst = getMobStorageEventInst(web3js, chainId, selectedAddress);
 
   logger.debug('Mobile fetchEventLogsFromChain>>>', inst._address);
-  let ret = {
+  const ret = {
     chainId,
     logs: [],
   };
-
+  // https://github.com/binance-chain/bsc/issues/113
+  // So BSC unsupport
   const eventLogs = await inst.getPastEvents('Commit', {
-    fromBlock: fromBlock || 0,
+    // fromBlock: fromBlock || 0,
     toBlock: 'latest',
     filter: { sender: [selectedAddress] },
   });
 
   if (eventLogs && eventLogs.length > 0) {
-    let lastEvent = eventLogs[eventLogs.length - 1];
+    const lastEvent = eventLogs[eventLogs.length - 1];
 
     ret.blockNumber = lastEvent.blockNumber;
     ret.lastTxHash = lastEvent.transactionHash;

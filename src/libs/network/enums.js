@@ -55,7 +55,7 @@ export const NETWORK_TYPE_NAME_KV = {
     networkId: BSCTEST_NETWORK_ID,
     chainId: BSCTEST_CHAIN_ID,
     nickname: BSCTEST_DISPLAY_NAME,
-    color: 'rgba(0,139,139, 0.7)',
+    color: 'rgba(240, 185, 11, 0.7)',
   },
 };
 

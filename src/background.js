@@ -27,7 +27,7 @@ import { stopPasswordSaving } from './libs/platforms/utils';
 
 // global.browser = require('webextension-polyfill');
 
-let localStore = new LocalStore();
+const localStore = new LocalStore();
 global.$local = localStore;
 
 /**
@@ -35,8 +35,8 @@ global.$local = localStore;
  */
 let latestVersionData;
 
-let popupIsOpen = false;
-let notificationIsOpen = false;
+const popupIsOpen = false;
+const notificationIsOpen = false;
 
 // holders
 const openBpassTabsIds = {};
@@ -47,7 +47,7 @@ const isClientOpenStatus = () => {
   return popupIsOpen || Boolean(Object.keys(openBpassTabsIds).length) || notificationIsOpen;
 };
 
-//startup
+// startup
 initialize().catch((error) => {
   logger.error('initialize backend error./n', error);
 });
@@ -89,11 +89,11 @@ async function setupController(initState) {
    */
   controller.emit('ctx:runtime:initial');
 
-  devAutoLogin('1234');
+  devAutoLogin('123');
   /** ======== setupController:internal functions begain =============== */
   // Connetion functions
 
-  let injet = 0;
+  const injet = 0;
   /**
    *
    * @param {port} remotePort
