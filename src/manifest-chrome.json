@@ -39,7 +39,6 @@
     "<all_urls>",
     "background",
     "tabs",
-    "activeTab",
     "storage",
     "unlimitedStorage",
     "notifications",

@@ -36,7 +36,7 @@ export const getWebStorageEventContractAddress = (chainId) => {
 export const fetchEventLogsFromChain = async (web3js, chainId, selectedAddress, fromBlock) => {
   const inst = getWebStorageEventInst(web3js, chainId, selectedAddress);
 
-  let ret = {
+  const ret = {
     chainId,
     logs: [],
   };
@@ -48,7 +48,7 @@ export const fetchEventLogsFromChain = async (web3js, chainId, selectedAddress, 
   });
 
   if (eventLogs && eventLogs.length > 0) {
-    let lastEvent = eventLogs[eventLogs.length - 1];
+    const lastEvent = eventLogs[eventLogs.length - 1];
 
     ret.blockNumber = lastEvent.blockNumber;
     ret.lastTxHash = lastEvent.transactionHash;
