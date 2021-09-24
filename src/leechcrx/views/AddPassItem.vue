@@ -122,7 +122,7 @@ export default {
         const whisperer = new WhispererController();
 
         const data = trimItemPorps(this.item);
-        if (this.item.suffix) {
+        if (this.data.suffix) {
           data.title = this.hostname + ';' + this.item.suffix;
         } else {
           data.title = this.hostname;
@@ -144,7 +144,7 @@ export default {
     },
 
     removeSelector() {
-      let message = {
+      const message = {
         apiType: API_WIN_SELECTOR_ERASER_FORCE,
         isInner: window.top !== window.self,
       };
@@ -157,7 +157,7 @@ export default {
       this.item.hostname = hostname;
       logger.debug('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', extension, extension.tabs);
       if (browser.tabs) {
-        //firefox no tabs permission
+        // firefox no tabs permission
         // browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         //   const tabId = tabs[0].id;
         //   const reqData = {
@@ -186,7 +186,7 @@ export default {
     'valtState.hostname': {
       immediate: true,
       handler(newVal, oldVal) {
-        if (Boolean(newVal)) {
+        if (newVal) {
           this.item.hostname = newVal;
         }
       },

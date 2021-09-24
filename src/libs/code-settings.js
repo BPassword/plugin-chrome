@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*********************************************************************
  * AircraftClass ::
  *     @Description: build runtime envirement variables
@@ -14,3 +15,4 @@ export const LOG_LEVEL = __LOG_LEVEL__;
 export const extTarget = __EXT_TARGET__;
 export const infuraId = __INFURA_PRO_ID__;
 export const infuraSecret = __INFURA_PRO_SECRET__;
+export const devPass = __DEV_PASS__;

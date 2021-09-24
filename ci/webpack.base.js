@@ -207,6 +207,7 @@ if (isDev) {
   baseConfig.plugins = (baseConfig.plugins || []).concat([
     new webpack.DefinePlugin({
       __LOG_LEVEL__: JSON.stringify(providerEnv.LOG_LEVEL || 'DEBUG'),
+      __DEV_PASS__: JSON.stringify(providerEnv.DEV_PASS || ''),
       'process.env.NODE_ENV': '"development"',
     }),
     new BundleAnalyzerPlugin({

@@ -64,10 +64,10 @@ export const trimItemPorps = (data) => {
   if (typeof data !== 'object') return data;
 
   return {
-    title: data['title'] ? data['title'].trim() : '',
-    username: data['username'] ? data['username'].trim() : '',
-    password: data['password'].trim() ? data['password'].trim() : '',
-    suffix: data['suffix'] ? data['suffix'].trim() : '',
-    hostname: data['hostname'] ? data['hostname'].trim() : '',
+    title: data.title ? data.title.trim() : '',
+    username: data.username ? data.username.trim() : '',
+    password: data.password.trim() ? data.password.trim() : '',
+    suffix: data.suffix ? data.suffix.trim() : '',
+    hostname: data.hostname ? data.hostname.trim() : '',
   };
 };
