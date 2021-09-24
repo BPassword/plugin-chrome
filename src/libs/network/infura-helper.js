@@ -14,7 +14,7 @@ import { infuraId } from '@lib/code-settings';
  *    @comments:
  **********************************************************************/
 
-//https://mainnet.infura.io/v3/YOUR-PROJECT-ID
+// https://mainnet.infura.io/v3/YOUR-PROJECT-ID
 const INFURA_DOMAIN = 'infura.io';
 const INFURA_VERSION = 'v3';
 

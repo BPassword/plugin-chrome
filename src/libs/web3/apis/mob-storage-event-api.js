@@ -32,7 +32,7 @@ export const fetchEventLogsFromChain = async (web3js, chainId, selectedAddress, 
   const inst = getMobStorageEventInst(web3js, chainId, selectedAddress);
 
   logger.debug('Mobile fetchEventLogsFromChain>>>', inst._address);
-  let ret = {
+  const ret = {
     chainId,
     logs: [],
   };
@@ -44,7 +44,7 @@ export const fetchEventLogsFromChain = async (web3js, chainId, selectedAddress, 
   });
 
   if (eventLogs && eventLogs.length > 0) {
-    let lastEvent = eventLogs[eventLogs.length - 1];
+    const lastEvent = eventLogs[eventLogs.length - 1];
 
     ret.blockNumber = lastEvent.blockNumber;
     ret.lastTxHash = lastEvent.transactionHash;

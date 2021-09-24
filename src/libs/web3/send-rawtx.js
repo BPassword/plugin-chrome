@@ -32,7 +32,7 @@ import { chain } from 'lodash';
  */
 export const signedDataTransaction = async (txParams, signOpts) => {
   const { dev3, chain } = signOpts;
-  let txData = validTxParams(txParams);
+  const txData = validTxParams(txParams);
   logger.debug('Translate txParams => txData', txData);
 
   const common = new Common({ chain: chain });
@@ -65,7 +65,7 @@ export const signedRawTxData4Method = async (web3js, dev3, txParams, data, opts)
     chainId = await web3js.eth.getChainId();
   }
 
-  let txData = validTxParams(txParams);
+  const txData = validTxParams(txParams);
   const nonce = await web3js.eth.getTransactionCount(selectedAddress);
   txData.nonce = nonce;
   txData.data = data;

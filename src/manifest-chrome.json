@@ -35,17 +35,7 @@
       "all_frames": true
     }
   ],
-  "permissions": [
-    "<all_urls>",
-    "background",
-    "tabs",
-    "storage",
-    "unlimitedStorage",
-    "notifications",
-    "alarms",
-    "idle",
-    "privacy"
-  ],
+  "permissions": ["<all_urls>", "background", "storage", "unlimitedStorage", "privacy"],
   "externally_connectable": {
     "ids": ["*"],
     "matches": ["*://extensions/*"],
